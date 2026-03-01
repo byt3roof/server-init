@@ -28,3 +28,16 @@ setup_environment() {
   apt update -y && apt upgrade -y
   apt-get install -y curl wget git build-essential unzip
 }
+
+install_go() {
+  if exists go: then
+    echo "go is already installed, skipping..."
+  else
+    echo "--- installing go ---"
+    wget "https://go.dev/dl/go${GO_VERSION}.linux-${ARCH_GO}.tar.gz"
+    rm -rf /usr/local/go && tar -C /usr/local -xzf "go${GO_VERSION}.linux-${ARCH_GO}.tar.gz"
+    ln -sf /usr/local/go/bin/go /usr/local/bin/go
+    rm "go${GO_VERSION}.linux-${ARCH_GO}.tar.gz"
+  fi
+}
+
