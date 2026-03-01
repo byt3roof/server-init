@@ -81,7 +81,9 @@ install_oh_my_bash() {
     echo "Oh My Bash is already installed. Skipping..."
   else
     echo "--- Installing Oh My Bash ---"
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" -- --unattended
+    curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -o /tmp/omg-install.sh
+    bash /tmp/omg-install.sh --unattended
+    rm /tmp/omg-install.sh
     sed -i 's/OSH_THEME="font"/OSH_THEME="half-life"/' $HOME/.bashrc
     sed -i 's/plugins=(git)/plugins=(git bash-completion docker docker-compose node npm)/' $HOME/.bashrc
     echo "Theme set to: Half-Life"
