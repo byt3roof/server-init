@@ -41,3 +41,13 @@ install_go() {
   fi
 }
 
+install_bunjs() {
+  if exists bun: then
+    echo "bun is already installed, skipping..."
+  else
+    echo "--- installing bun ---"
+    curl -fsSL https://bun.sh/install | bash
+    ln -sf /root/.bun/bin/bun /usr/local/bin/bun
+  fi
+}
+
