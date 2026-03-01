@@ -77,11 +77,11 @@ install_docker() {
 }
 
 install_oh_my_bash() {
-  if [ -d "$HOME/.oh-my-bash" ]; thenecho
+  if [ -d "$HOME/.oh-my-bash" ]; then
     echo "Oh My Bash is already installed. Skipping..."
   else
     echo "--- Installing Oh My Bash ---"
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" --prefix=$HOME --unattended      
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" -- --prefix=$HOME --unattended      
     sed -i 's/OSH_THEME="font"/OSH_THEME="half-life"/' $HOME/.bashrc
     sed -i 's/plugins=(git)/plugins=(git bash-completion docker docker-compose node npm)/' $HOME/.bashrc
     echo "Theme set to: Half-Life"
