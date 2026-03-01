@@ -76,3 +76,20 @@ install_docker() {
   fi
 }
 
+main() {
+  setup_environment
+  install_go
+  install_bunjs
+  install_docker
+
+  echo "--- --- --- --- --- --- --- --- ---"
+  echo "installation complete"
+  echo "go: $(go version)"
+  echo "bun: $(bun -v)"
+  echo "docker: $(docker --version)"
+  echo "docker compose: $(docker compose version)"
+  echo "NOTE you may need to log out and log back in for docker group changes to take effect"
+  echo "--- --- --- --- --- --- --- --- ---"
+}
+
+main
