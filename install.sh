@@ -30,7 +30,7 @@ setup_environment() {
 }
 
 install_go() {
-  if exists go: then
+  if exists go; then
     echo "go is already installed, skipping..."
   else
     echo "--- installing go ---"
@@ -42,7 +42,7 @@ install_go() {
 }
 
 install_bunjs() {
-  if exists bun: then
+  if exists bun; then
     echo "bun is already installed, skipping..."
   else
     echo "--- installing bun ---"
@@ -52,7 +52,7 @@ install_bunjs() {
 }
 
 install_docker() {
-  if exists docker: then
+  if exists docker; then
     echo "docker is already installed, skipping..."
   else
     echo "--- installing docker engine & compose ---"
@@ -65,7 +65,7 @@ install_docker() {
       $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
 
     apt update
-    apt install -y docker-ce docker-ce-cli conainerd.io docker-buildx-plugin docker-compose-plugin
+    apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
     systemctl enable docker --now
 
@@ -97,7 +97,7 @@ main() {
 
   echo "--- --- --- --- --- --- --- --- ---"
   echo "installation complete"
-  echo: "shell: oh my bash installed"
+  echo "shell: oh my bash installed"
   echo "go: $(go version)"
   echo "bun: $(bun -v)"
   echo "docker: $(docker --version)"
