@@ -94,15 +94,24 @@ install_oh_my_bash() {
 }
 
 install_fastfetch() {
-    if exists fastfetch; then
-        echo "fastfetch is already installed, skipping..."
+  if exists fastfetch; then
+    echo "fastfetch is already installed, skipping..."
+  else
+    echo "--- installing fastfetch ---"
+    if [ "$OS_ID" = "ubuntu" ]; then
+      add-apt-repository -y ppa:zhangsongcui3371/fastfetch
+      apt update
+      apt install -y fastfetch
+    elif [ "$OS_ID" = "debian" ]; then
+      apt install -y fastfetch
     else
-        echo "--- installing fastfetch ---"
-        wget -q "https://github.com/fastfetch-cli/fastfetch/releases/latest/download/fastfetch-linux-${ARCH_GO}.tar.gz" -O fastfetch.tar.gz
-        tar -xzf fastfetch.tar.gz
-        cp "fastfetch-linux-${ARCH_GO}/fastfetch" /usr/local/bin/fastfetch
-        rm -rf fastfetch.tar.gz "fastfetch-linux-${ARCH_GO}"
+      echo "falling back to binary install..."
+      wget -q "https://github.com/fastfetch-cli/fastfetch/releases/latest/download/fastfetch-linux-${ARCH_GO}.tar.gz" -O fastfetch.tar.gz
+      tar -xzf fastfetch.tar.gz
+      cp "fastfetch-linux-${ARCH_GO}/fastfetch" /usr/local/bin/fastfetch
+      rm -rf fastfetch.tar.gz "fastfetch-linux-${ARCH_GO}"
     fi
+  fi
 }
 
 main() {
