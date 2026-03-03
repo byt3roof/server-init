@@ -129,7 +129,7 @@ main() {
   echo "bun: $(bun -v)"
   echo "docker: $(docker --version)"
   echo "docker compose: $(docker compose version)"
-  echo "fastfetch: $(fastfetch)"
+  echo "fastfetch: $(fastfetch --version)"
   echo "NOTE you may need to log out and log back in for shell and docker group changes to take effect"
   echo "--- --- --- --- --- --- --- --- ---"
 }
