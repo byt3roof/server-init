@@ -93,12 +93,25 @@ install_oh_my_bash() {
   fi
 }
 
+install_fastfetch() {
+    if exists fastfetch; then
+        echo "fastfetch is already installed, skipping..."
+    else
+        echo "--- installing fastfetch ---"
+        wget -q "https://github.com/fastfetch-cli/fastfetch/releases/latest/download/fastfetch-linux-${ARCH_GO}.tar.gz" -O fastfetch.tar.gz
+        tar -xzf fastfetch.tar.gz
+        cp "fastfetch-linux-${ARCH_GO}/fastfetch" /usr/local/bin/fastfetch
+        rm -rf fastfetch.tar.gz "fastfetch-linux-${ARCH_GO}"
+    fi
+}
+
 main() {
   setup_environment
   install_oh_my_bash
   install_go
   install_bunjs
   install_docker
+  install_fastfetch
 
   echo "--- --- --- --- --- --- --- --- ---"
   echo "installation complete"
